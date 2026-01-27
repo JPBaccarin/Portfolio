@@ -5,7 +5,7 @@ import { RiWhatsappLine, RiMailLine, RiLinkedinLine } from "@remixicon/react";
 import { useLanguage } from "@/context/language-context";
 
 interface ContactDialogProps {
-  trigger: React.ReactNode;
+  trigger: React.ReactElement;
 }
 
 export function ContactDialog({ trigger }: ContactDialogProps) {
@@ -13,7 +13,7 @@ export function ContactDialog({ trigger }: ContactDialogProps) {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
+      <DialogTrigger render={trigger} />
       <DialogContent className="sm:max-w-md bg-background/95 backdrop-blur-xl border-border/10">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold uppercase tracking-widest font-jetbrains text-primary">
