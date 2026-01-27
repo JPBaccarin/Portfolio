@@ -25,26 +25,26 @@
 :root {
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.2 0 0);
-  --primary: oklch(0.65 0.14 45);
+  --primary: oklch(77.296% 0.15882 158.344);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.94 0 0);
   --muted: oklch(0.92 0 0);
   --muted-foreground: oklch(0.5 0 0);
   --border: oklch(0.2 0 0 / 0.1);
-  --ring: oklch(0.65 0.14 45);
+  --ring: oklch(77.253% 0.16058 157.667);
   --radius: 0.25rem;
 }
 
 .dark {
   --background: oklch(0.18 0 0);
   --foreground: oklch(0.95 0 0);
-  --primary: oklch(0.7 0.16 45);
+  --primary: oklch(85.729% 0.20872 153.713);
   --primary-foreground: oklch(0.1 0 0);
   --secondary: oklch(0.22 0 0);
   --muted: oklch(0.25 0 0);
   --muted-foreground: oklch(0.65 0 0);
   --border: oklch(0.95 0 0 / 0.1);
-  --ring: oklch(0.7 0.16 45);
+  --ring: oklch(85.729% 0.20872 153.713);
 }
 
 @layer base {
@@ -54,60 +54,112 @@
   body {
     @apply bg-background text-foreground selection:bg-primary/30 font-archivo min-h-screen relative overflow-x-hidden antialiased;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-jetbrains tracking-tight;
-  }
 }
 
 @layer utilities {
-  .noise-bg {
+  .noise-overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: 0.08;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    background-size: 200px 200px;
+    background-size: 150px 150px;
     mix-blend-mode: overlay;
+    animation: noiseAnim 0.2s infinite steps(2);
   }
 
-  .gradient-animated {
-    position: absolute;
+  .global-bg {
+    position: fixed;
     inset: 0;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 30% 40%, var(--primary) 0%, transparent 35%),
-      radial-gradient(circle at 70% 60%, var(--primary) 0%, transparent 40%);
-    opacity: 0.2;
-    filter: blur(100px);
-    animation: gradientMove 12s infinite ease-in-out;
+    z-index: -1;
+    background: var(--background);
+    overflow: hidden;
   }
 
-  .hero-fade {
+  .accent-gradient {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 200px;
-    background: linear-gradient(to bottom, transparent, var(--background));
-    z-index: 1;
+    width: 100vw;
+    height: 100vw;
+    border-radius: 50%;
+    /* Extremely subtle orange */
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    opacity: 0.08;
+    filter: blur(160px);
+    animation: floatAnim 40s infinite alternate ease-in-out;
   }
 
-  @keyframes gradientMove {
-    0%,
-    100% {
+  @keyframes noiseAnim {
+    0% {
       transform: translate(0, 0);
     }
-    33% {
-      transform: translate(8%, 5%);
+    10% {
+      transform: translate(-1%, -1%);
     }
-    66% {
-      transform: translate(-5%, 10%);
+    20% {
+      transform: translate(1%, 1%);
     }
+    30% {
+      transform: translate(-2%, 0%);
+    }
+    40% {
+      transform: translate(1%, -2%);
+    }
+    50% {
+      transform: translate(-1%, 2%);
+    }
+    60% {
+      transform: translate(2%, 1%);
+    }
+    70% {
+      transform: translate(0%, -1%);
+    }
+    80% {
+      transform: translate(-2%, -2%);
+    }
+    90% {
+      transform: translate(1%, 1%);
+    }
+  }
+
+  @keyframes floatAnim {
+    0% {
+      transform: translate(-10%, -10%) scale(1);
+    }
+    100% {
+      transform: translate(10%, 10%) scale(1.05);
+    }
+  }
+
+  /* Custom Markdown Typography */
+  .markdown-content h1 {
+    @apply scroll-m-20 text-4xl font-black tracking-tighter lg:text-5xl mb-8 uppercase font-jetbrains;
+  }
+  .markdown-content h2 {
+    @apply scroll-m-20 border-b border-border/10 pb-2 text-2xl font-bold tracking-tight first:mt-0 mt-12 mb-6 uppercase font-jetbrains text-foreground;
+  }
+  .markdown-content h3 {
+    @apply scroll-m-20 text-xl font-bold tracking-tight mt-8 mb-4 uppercase font-jetbrains text-primary;
+  }
+  .markdown-content p {
+    @apply leading-7 [&:not(:first-child)]:mt-6 text-muted-foreground font-medium;
+  }
+  .markdown-content blockquote {
+    @apply mt-6 border-l-2 border-primary pl-6 italic text-muted-foreground;
+  }
+  .markdown-content ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2 text-muted-foreground;
+  }
+  .markdown-content ol {
+    @apply my-6 ml-6 list-decimal [&>li]:mt-2 text-muted-foreground;
+  }
+  .markdown-content code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-jetbrains text-sm font-semibold text-primary;
+  }
+  .markdown-content strong {
+    @apply font-bold text-foreground;
+  }
+  .markdown-content hr {
+    @apply my-8 border-border/10;
   }
 }

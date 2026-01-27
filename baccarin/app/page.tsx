@@ -1,9 +1,15 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
+import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { useLanguage } from "@/context/language-context";
 
 export default function Page() {
+  const { t } = useLanguage();
+
   return (
     <main>
       <Header />
@@ -14,28 +20,22 @@ export default function Page() {
         <div className="container mx-auto">
           <div className="max-w-4xl">
             <span className="text-[10px] font-bold text-primary uppercase tracking-[0.4em] mb-10 block font-jetbrains">
-              Apresentação
+              {t.about.label}
             </span>
             <p className="text-2xl md:text-3xl font-bold leading-tight tracking-tight uppercase mb-12 font-jetbrains">
-              Ajudando marcas a traduzir sua visão em produtos{" "}
-              <span className="text-primary italic">digitais de alto impacto</span> através de design minimalista e
-              código eficiente.
+              {t.about.title}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-[11px] font-medium uppercase tracking-wider text-muted-foreground leading-relaxed">
-              <p>
-                Focado em simplicidade. Cada projeto é uma oportunidade de destacar o essencial, unindo a neutralidade
-                técnica do cinza com a expressividade do laranja.
-              </p>
-              <p>
-                Desenvolvimento moderno utilizando Next.js, GSAP e Tailwind, garantindo performance e uma estética
-                contemporânea polida.
-              </p>
+              <p>{t.about.description1}</p>
+              <p>{t.about.description2}</p>
             </div>
           </div>
         </div>
       </section>
 
       <Projects />
+
+      <Contact />
 
       <Footer />
     </main>

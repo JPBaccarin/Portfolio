@@ -2,68 +2,80 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "@/context/language-context";
+import { RiArrowDownLine } from "@remixicon/react";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(
     () => {
-      const chars = nameRef.current?.querySelectorAll(".char");
-      if (!chars) return;
+      const tl = gsap.timeline({ delay: 0.5 });
 
-      gsap.fromTo(
-        chars,
+      // Shutter reveal for the name
+      tl.from(".char", {
+        yPercent: 100,
+        duration: 1.2,
+        stagger: 0.05,
+        ease: "power4.out",
+      });
+
+      // Subtle fade for the description and button
+      tl.from(
+        ".hero-content",
         {
           opacity: 0,
-          y: 100,
-          rotateX: -90,
+          y: 20,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
         },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          duration: 1.2,
-          stagger: 0.08,
-          ease: "power4.out",
-        },
+        "-=0.6",
       );
-
-      gsap.from(".hero-subtitle", {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 0.8,
-        ease: "power3.out",
-      });
     },
     { scope: containerRef },
   );
 
   return (
-    <section ref={containerRef} className="relative flex min-h-screen items-center justify-center px-6 overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="gradient-animated" />
+    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center px-6 md:px-12">
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="flex flex-col items-start gap-8">
+          {/* Main Name */}
+          <div className="relative overflow-hidden py-2">
+            <h1
+              ref={nameRef}
+              className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none font-jetbrains flex flex-wrap"
+            >
+              {"BACCARIN".split("").map((char, i) => (
+                <span key={i} className="inline-block overflow-hidden">
+                  <span className="char inline-block">{char}</span>
+                </span>
+              ))}
+            </h1>
+          </div>
 
-      <div className="container mx-auto text-center max-w-5xl relative z-10">
-        <h1
-          ref={nameRef}
-          className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none mb-8 font-jetbrains"
-        >
-          {"BACCARIN".split("").map((char, i) => (
-            <span key={i} className="char inline-block" style={{ transformOrigin: "50% 100%" }}>
-              {char}
-            </span>
-          ))}
-        </h1>
+          {/* Simple Description */}
+          <p className="hero-content text-lg md:text-xl font-medium text-muted-foreground leading-relaxed max-w-xl uppercase tracking-tight">
+            {t.hero.description}
+          </p>
 
-        <p className="hero-subtitle text-sm md:text-base font-medium text-muted-foreground uppercase tracking-[0.3em] max-w-2xl mx-auto">
-          Desenvolvedor Full Stack — Design & Code
-        </p>
+          {/* Action Button */}
+          <div className="hero-content mt-4 flex flex-wrap gap-10">
+            <a
+              href="#projetos"
+              className="group flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.4em] transition-all hover:text-primary"
+            >
+              <span className="relative inline-block pb-1">
+                {t.hero.cta}
+                <span className="absolute bottom-0 left-0 w-full h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-right group-hover:origin-left" />
+              </span>
+              <RiArrowDownLine className="w-5 h-5 transition-transform group-hover:translate-y-1" />
+            </a>
+          </div>
+        </div>
       </div>
-
-      {/* Smooth transition fade */}
-      <div className="hero-fade" />
     </section>
   );
 }

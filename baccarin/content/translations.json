@@ -1,0 +1,108 @@
+{
+  "pt": {
+    "nav": {
+      "projects": "Projetos",
+      "about": "Sobre",
+      "contact": "Contato"
+    },
+    "hero": {
+      "description": "Desenvolvedor Full Stack focado em Next.js e aplicações web.",
+      "cta": "Conheça_Projetos",
+      "resumeDownload": "Currículo",
+      "resumeFile": "/currículo.pdf"
+    },
+    "about": {
+      "label": "Apresentação",
+      "title": "Técnico em Sistemas pela ETEC, transformando lógica em experiências digitais de alto impacto.",
+      "description1": "Com 20 anos de idade e uma base técnica sólida desde a formação na ETEC, domino o ecossistema Web (Next.js, React, PHP). Após o serviço militar na AFA em 2025, retorno ao desenvolvimento em 2026 com foco total em soluções de alta performance.",
+      "description2": "De aplicativos nativos a plataformas web robustas, utilizo Next.js e GSAP para entregar interfaces fluidas que equilibram neutralidade e sofisticação."
+    },
+    "projects": {
+      "label": "Trabalhos",
+      "title": "Galeria de Projetos",
+      "totalCount": "Total_Count",
+      "items": [
+        {
+          "slug": "vortex-system",
+          "title": "Vortex_System",
+          "category": "Engenharia Digital"
+        },
+        {
+          "slug": "nova-finance",
+          "title": "Nova_Finance",
+          "category": "Fintech Interface"
+        },
+        {
+          "slug": "eco-sphere",
+          "title": "Eco_Sphere",
+          "category": "Analytics Platform"
+        }
+      ]
+    },
+    "footer": {
+      "label": "Contato",
+      "title": "Vamos criar algo marcante.",
+      "cta": "Enviar Mensagem",
+      "socialLabel": "Social_Links",
+      "contactDialog": {
+        "title": "Iniciar_Conversa",
+        "whatsapp": "WhatsApp",
+        "email": "E-mail",
+        "linkedin": "LinkedIn"
+      }
+    }
+  },
+  "en": {
+    "nav": {
+      "projects": "Projects",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "hero": {
+      "description": "Full Stack Developer focused on Next.js and web applications.",
+      "cta": "View_Projects",
+      "resumeDownload": "Resume",
+      "resumeFile": "/resume.pdf"
+    },
+    "about": {
+      "label": "Presentation",
+      "title": "Systems Technician from ETEC, turning logic into high-impact digital experiences.",
+      "description1": "At 20 years old, with a solid technical background established since my ETEC training, I master the Web ecosystem (Next.js, React, PHP). After military service at the AFA in 2025, I am returning to development in 2026 with full focus on high-performance solutions.",
+      "description2": "From native apps to robust web platforms, I use Next.js and GSAP to deliver fluid interfaces that balance neutrality and sophistication."
+    },
+    "projects": {
+      "label": "Works",
+      "title": "Project Gallery",
+      "totalCount": "Total_Count",
+      "items": [
+        {
+          "slug": "vortex-system",
+          "title": "Vortex_System",
+          "category": "Digital Engineering"
+        },
+        {
+          "slug": "nova-finance",
+          "title": "Nova_Finance",
+          "category": "Fintech Interface"
+        },
+        {
+          "slug": "eco-sphere",
+          "title": "Eco_Sphere",
+          "category": "Analytics Platform"
+        }
+      ]
+    },
+    "footer": {
+      "label": "Contact",
+      "title": "Let's create something remarkable.",
+      "cta": "Send Message",
+      "socialLabel": "Social_Links",
+      "contactDialog": {
+        "title": "Start_Conversation",
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "linkedin": "LinkedIn"
+      }
+    }
+  }
+}
