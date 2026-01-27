@@ -1,4 +1,3 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
 name: Deploy Next.js site to Pages
 
 on:
@@ -18,7 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Define que todos os comandos 'run' devem rodar dentro da pasta baccarin
     defaults:
       run:
         working-directory: baccarin
@@ -29,19 +27,22 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          if [ -f "yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-            exit 0
-          elif [ -f "package.json" ]; then
+          if [ -f "package-lock.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
             exit 0
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=yarn" >> $GITHUB_OUTPUT
+            exit 0
           else
-            echo "Unable to determine package manager"
-            exit 1
+            # Caso não encontre lockfile, mas o package.json exista
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            exit 0
           fi
 
       - name: Setup Node
@@ -49,8 +50,8 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          # Indica onde está o arquivo de lock para o cache funcionar
-          cache-dependency-path: baccarin/package-lock.json 
+          # O caminho do cache deve ser relativo à raiz do repositório
+          cache-dependency-path: baccarin/package-lock.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -62,9 +63,9 @@ jobs:
         with:
           path: |
             baccarin/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('baccarin/**/package-lock.json', 'baccarin/**/yarn.lock') }}-${{ hashFiles('baccarin/**/*.[jt]s', 'baccarin/**/*.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('baccarin/package-lock.json') }}-${{ hashFiles('baccarin/**/*.[jt]s', 'baccarin/**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('baccarin/**/package-lock.json', 'baccarin/**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('baccarin/package-lock.json') }}-
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
@@ -75,7 +76,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # O Next.js gera a pasta 'out' dentro de 'baccarin'
+          # O caminho do artefato deve ser relativo à raiz do repositório
           path: baccarin/out
 
   deploy:
