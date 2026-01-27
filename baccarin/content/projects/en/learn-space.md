@@ -2,11 +2,25 @@
 title: "LearnSpace"
 category: "AI EdTech "
 date: "2024-12-01"
-image: "/images/projects/learnspacelogo.png"
-tech: ["Next.js", "Express", "MySQL", "OpenAI", "ElevenLabs", "OAuth", "JWT", "Sequelize", "RBAC", "Tailwind CSS", "Shadcn UI", "Framer Motion", "TypeScript"]
+image: "/Portfolio/images/projects/learnspacelogo.png"
+tech:
+  [
+    "Next.js",
+    "Express",
+    "MySQL",
+    "OpenAI",
+    "ElevenLabs",
+    "OAuth",
+    "JWT",
+    "Sequelize",
+    "RBAC",
+    "Tailwind CSS",
+    "Shadcn UI",
+    "Framer Motion",
+    "TypeScript",
+  ]
 description: "Educational platform using generative AI for personalized learning."
 ---
-
 
 > **Project Lead & Full-stack Developer**
 > _Capstone Project (TCC) — 2024_

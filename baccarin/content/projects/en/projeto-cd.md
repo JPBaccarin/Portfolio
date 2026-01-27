@@ -2,12 +2,10 @@
 title: "Project CD: Desktop Accessibility"
 category: "Personal Project"
 date: "2025"
-image: "/images/projects/cdlogo.png"
+image: "/Portfolio/images/projects/cdlogo.png"
 tech: ["Tauri v2", "Rust", "React", "Shadcn UI"]
 description: "Simplified desktop tool for elderly people to backup classic music CDs."
 ---
-
-
 
 **Project CD** was born from a real need: my grandfather has a vast collection of music CDs and wanted to transfer them to USB sticks autonomously. Conventional "CD Ripping" software is full of complex menus, technical terms, and ads.
 
@@ -53,5 +51,4 @@ Unlike a standard web application, the project required direct access to OS APIs
 
 Below is a demonstration of the interface focused on simplicity.
 
-![Project CD Interface - Simplicity Focus](/images/projects/cddemo.png)
-
+![Project CD Interface - Simplicity Focus](/Portfolio/images/projects/cddemo.png)

@@ -9,7 +9,7 @@
       "description": "Desenvolvedor Full Stack focado em Next.js e aplicações web.",
       "cta": "Conheça_Projetos",
       "resumeDownload": "Currículo",
-      "resumeFile": "/currículo.pdf"
+      "resumeFile": "/Portfolio/currículo.pdf"
     },
     "about": {
       "label": "Apresentação",
@@ -26,19 +26,19 @@
           "slug": "automata-marketing",
           "title": "Automata Marketing",
           "category": "Site Institucional",
-          "image": "/images/projects/automatalogo.png"
+          "image": "/Portfolio/images/projects/automatalogo.png"
         },
         {
           "slug": "projeto-cd",
           "title": "Projeto CD",
           "category": "Acessibilidade Desktop",
-          "image": "/images/projects/cdlogo.png"
+          "image": "/Portfolio/images/projects/cdlogo.png"
         },
         {
           "slug": "learn-space",
           "title": "LearnSpace",
           "category": "Plataforma de Estudo IA",
-          "image": "/images/projects/learnspacelogo.png"
+          "image": "/Portfolio/images/projects/learnspacelogo.png"
         }
       ]
     },
@@ -65,7 +65,7 @@
       "description": "Full Stack Developer focused on Next.js and web applications.",
       "cta": "View_Projects",
       "resumeDownload": "Resume",
-      "resumeFile": "/resume.pdf"
+      "resumeFile": "/Portfolio/resume.pdf"
     },
     "about": {
       "label": "Presentation",
@@ -82,19 +82,19 @@
           "slug": "automata-marketing",
           "title": "Automata Marketing",
           "category": "Agency Website",
-          "image": "/images/projects/automatalogo.png"
+          "image": "/Portfolio/images/projects/automatalogo.png"
         },
         {
           "slug": "projeto-cd",
           "title": "Project CD",
           "category": "Desktop Accessibility",
-          "image": "/images/projects/cdlogo.png"
+          "image": "/Portfolio/images/projects/cdlogo.png"
         },
         {
           "slug": "learn-space",
           "title": "LearnSpace",
           "category": "AI Study Platform",
-          "image": "/images/projects/learnspacelogo.png"
+          "image": "/Portfolio/images/projects/learnspacelogo.png"
         }
       ]
     },

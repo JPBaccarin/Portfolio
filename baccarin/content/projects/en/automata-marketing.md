@@ -2,11 +2,10 @@
 title: "Automata Marketing"
 category: "Agency Website"
 date: "2026"
-image: "/images/projects/automatalogo.png"
+image: "/Portfolio/images/projects/automatalogo.png"
 tech: ["Next.js", "GSAP", "Shadcn UI", "Tailwind CSS", "TypeScript", "Vercel", "Figma"]
 description: "High-performance institutional website with advanced animations for a marketing agency."
 ---
-
 
 **Automata Marketing** is a modern institutional website developed for a marketing agency. The project's focus was to create a high-level digital presence that reflected the agency's innovative approach, using advanced motion design and a professional, clean interface.
 

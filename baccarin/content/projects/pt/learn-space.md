@@ -2,8 +2,23 @@
 title: "LearnSpace"
 category: "EdTech com IA"
 date: "2022 - 2024"
-image: "/images/projects/learnspacelogo.png"
-tech: ["Next.js", "Express", "MySQL", "OpenAI", "ElevenLabs", "OAuth", "JWT", "Sequelize", "RBAC", "Tailwind CSS", "Shadcn UI", "Framer Motion", "TypeScript"]
+image: "/Portfolio/images/projects/learnspacelogo.png"
+tech:
+  [
+    "Next.js",
+    "Express",
+    "MySQL",
+    "OpenAI",
+    "ElevenLabs",
+    "OAuth",
+    "JWT",
+    "Sequelize",
+    "RBAC",
+    "Tailwind CSS",
+    "Shadcn UI",
+    "Framer Motion",
+    "TypeScript",
+  ]
 description: "Plataforma educacional com IA generativa para aprendizado personalizado."
 ---
 

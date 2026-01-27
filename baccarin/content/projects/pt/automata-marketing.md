@@ -2,12 +2,10 @@
 title: "Automata Marketing"
 category: "Site Institucional"
 date: "2026"
-image: "/images/projects/automatalogo.png"
+image: "/Portfolio/images/projects/automatalogo.png"
 tech: ["Next.js", "GSAP", "Shadcn UI", "Tailwind CSS", "TypeScript", "Vercel", "Figma"]
 description: "Website institucional de alta performance com animações avançadas para agência de marketing."
 ---
-
-
 
 O **Automata Marketing** é um site institucional moderno desenvolvido para uma agência de marketing. O foco do projeto foi criar uma presença digital de alto nível que refletisse a abordagem inovadora da agência, utilizando design de movimento avançado e uma interface profissional e limpa.
 
