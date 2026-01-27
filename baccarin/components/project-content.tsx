@@ -13,12 +13,6 @@ interface ProjectContentProps {
   en: any;
 }
 
-const projectImages: Record<string, string> = {
-  "vortex-system": "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200",
-  "nova-finance": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200",
-  "eco-sphere": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200",
-};
-
 export function ProjectContent({ pt, en }: ProjectContentProps) {
   const { language, t } = useLanguage();
   const data = language === "pt" ? pt : en;
@@ -78,7 +72,7 @@ export function ProjectContent({ pt, en }: ProjectContentProps) {
                   {language === "pt" ? "Tecnologias" : "Stack"}
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {["Next.js", "GSAP", "MDX"].map((tech) => (
+                  {(data.tech || ["Next.js", "React", "TypeScript"]).map((tech: string) => (
                     <span
                       key={tech}
                       className="px-3 py-1 bg-secondary text-[10px] font-bold uppercase tracking-wider rounded-sm border border-border/5"
@@ -126,7 +120,7 @@ export function ProjectContent({ pt, en }: ProjectContentProps) {
               <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
                 <div className="relative aspect-video rounded-md overflow-hidden border border-border/5 mb-6">
                   <Image
-                    src={projectImages[p.slug]}
+                    src={p.image || "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200"}
                     alt={p.title}
                     fill
                     className="object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105 opacity-60 group-hover:opacity-100"

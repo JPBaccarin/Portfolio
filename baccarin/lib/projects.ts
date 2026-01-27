@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import html from "remark-html";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
@@ -16,7 +17,7 @@ export async function getProjectData(slug: string, lang: string) {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
 
-  const processedContent = await remark().use(html).process(matterResult.content);
+  const processedContent = await remark().use(remarkGfm).use(html).process(matterResult.content);
 
   const contentHtml = processedContent.toString();
 
@@ -29,6 +30,7 @@ export async function getProjectData(slug: string, lang: string) {
       date: string;
       image: string;
       description: string;
+      tech: string[];
     }),
   };
 }
@@ -69,6 +71,7 @@ export function getProjectList(lang: string) {
         date: string;
         image: string;
         description: string;
+        tech: string[];
       }),
     };
   });

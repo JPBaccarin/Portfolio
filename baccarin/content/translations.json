@@ -23,19 +23,22 @@
       "totalCount": "Total_Count",
       "items": [
         {
-          "slug": "vortex-system",
-          "title": "Vortex_System",
-          "category": "Engenharia Digital"
+          "slug": "automata-marketing",
+          "title": "Automata Marketing",
+          "category": "Site Institucional",
+          "image": "/images/projects/automatalogo.png"
         },
         {
-          "slug": "nova-finance",
-          "title": "Nova_Finance",
-          "category": "Fintech Interface"
+          "slug": "projeto-cd",
+          "title": "Projeto CD",
+          "category": "Acessibilidade Desktop",
+          "image": "/images/projects/cdlogo.png"
         },
         {
-          "slug": "eco-sphere",
-          "title": "Eco_Sphere",
-          "category": "Analytics Platform"
+          "slug": "learn-space",
+          "title": "LearnSpace",
+          "category": "Plataforma de Estudo IA",
+          "image": "/images/projects/learnspacelogo.png"
         }
       ]
     },
@@ -76,19 +79,22 @@
       "totalCount": "Total_Count",
       "items": [
         {
-          "slug": "vortex-system",
-          "title": "Vortex_System",
-          "category": "Digital Engineering"
+          "slug": "automata-marketing",
+          "title": "Automata Marketing",
+          "category": "Agency Website",
+          "image": "/images/projects/automatalogo.png"
         },
         {
-          "slug": "nova-finance",
-          "title": "Nova_Finance",
-          "category": "Fintech Interface"
+          "slug": "projeto-cd",
+          "title": "Project CD",
+          "category": "Desktop Accessibility",
+          "image": "/images/projects/cdlogo.png"
         },
         {
-          "slug": "eco-sphere",
-          "title": "Eco_Sphere",
-          "category": "Analytics Platform"
+          "slug": "learn-space",
+          "title": "LearnSpace",
+          "category": "AI Study Platform",
+          "image": "/images/projects/learnspacelogo.png"
         }
       ]
     },

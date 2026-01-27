@@ -53,7 +53,7 @@ export function Projects() {
             <Link key={i} href={`/projects/${p.slug}`} className="project-card group block">
               <div className="relative aspect-4/5 overflow-hidden bg-secondary rounded-md border border-border/5">
                 <Image
-                  src={projectImages[i]}
+                  src={p.image || projectImages[i % projectImages.length]}
                   alt={p.title}
                   fill
                   className="object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105 opacity-60 group-hover:opacity-100"

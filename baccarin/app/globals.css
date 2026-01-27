@@ -25,20 +25,20 @@
 :root {
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.2 0 0);
-  --primary: oklch(77.296% 0.15882 158.344);
+  --primary: oklch(66.848% 0.13106 169.823);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.94 0 0);
   --muted: oklch(0.92 0 0);
   --muted-foreground: oklch(0.5 0 0);
   --border: oklch(0.2 0 0 / 0.1);
-  --ring: oklch(77.253% 0.16058 157.667);
+  --ring: oklch(66.848% 0.13106 169.823 / 0.3);
   --radius: 0.25rem;
 }
 
 .dark {
   --background: oklch(0.18 0 0);
   --foreground: oklch(0.95 0 0);
-  --primary: oklch(85.729% 0.20872 153.713);
+  --primary: oklab(85.729% -0.18714 0.09244);
   --primary-foreground: oklch(0.1 0 0);
   --secondary: oklch(0.22 0 0);
   --muted: oklch(0.25 0 0);
@@ -142,7 +142,7 @@
     @apply scroll-m-20 text-xl font-bold tracking-tight mt-8 mb-4 uppercase font-jetbrains text-primary;
   }
   .markdown-content p {
-    @apply leading-7 [&:not(:first-child)]:mt-6 text-muted-foreground font-medium;
+    @apply leading-7 not-first:mt-6 text-muted-foreground font-medium;
   }
   .markdown-content blockquote {
     @apply mt-6 border-l-2 border-primary pl-6 italic text-muted-foreground;
@@ -161,5 +161,26 @@
   }
   .markdown-content hr {
     @apply my-8 border-border/10;
+  }
+  .markdown-content table {
+    @apply w-full border-collapse my-8 overflow-hidden rounded-lg border border-border/10 shadow-sm;
+  }
+  .markdown-content thead {
+    @apply bg-secondary/40;
+  }
+  .markdown-content th {
+    @apply px-5 py-3.5 text-left font-black uppercase tracking-[0.15em] text-[9px] text-foreground border-b border-border/10 font-jetbrains;
+  }
+  .markdown-content td {
+    @apply px-5 py-4 text-xs text-muted-foreground border-b border-border/5 leading-relaxed;
+  }
+  .markdown-content tr:last-child td {
+    @apply border-b-0;
+  }
+  .markdown-content tr {
+    @apply transition-colors duration-200;
+  }
+  .markdown-content tr:hover td {
+    @apply bg-primary/[0.03] text-foreground;
   }
 }

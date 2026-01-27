@@ -21,24 +21,20 @@ export function Contact() {
           <div className="space-y-4">
             <a
               href="mailto:joaopedrobaccarin123@gmail.com"
-              className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group font-jetbrains"
+              className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group font-jetbrains no-underline"
             >
               <RiMailLine className="w-5 h-5 text-primary" />
-              <span className="border-b border-primary/20 pb-1 group-hover:border-primary transition-all">
-                joaopedrobaccarin123@gmail.com
-              </span>
+              <span className="group-hover:text-primary transition-all">joaopedrobaccarin123@gmail.com</span>
             </a>
 
             <a
               href="https://wa.me/5519995078743"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group font-jetbrains"
+              className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] group font-jetbrains no-underline"
             >
               <RiWhatsappLine className="w-5 h-5 text-primary" />
-              <span className="border-b border-primary/20 pb-1 group-hover:border-primary transition-all">
-                +55 (19) 99507-8743
-              </span>
+              <span className="group-hover:text-primary transition-all">+55 (19) 99507-8743</span>
             </a>
           </div>
         </div>
