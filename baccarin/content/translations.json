@@ -45,6 +45,12 @@
           "title": "Overseas",
           "category": "Site Educacional",
           "image": "/Portfolio/images/projects/overseaslogo.png"
+        },
+        {
+          "slug": "calc-all",
+          "title": "CalcAll",
+          "category": "Plataforma Educacional",
+          "image": "/Portfolio/images/projects/calcalllogo.png"
         }
       ]
     },
@@ -107,6 +113,12 @@
           "title": "Overseas",
           "category": "Educational Site",
           "image": "/Portfolio/images/projects/overseaslogo.png"
+        },
+        {
+          "slug": "calc-all",
+          "title": "CalcAll",
+          "category": "Educational Platform",
+          "image": "/Portfolio/images/projects/calcalllogo.png"
         }
       ]
     },
