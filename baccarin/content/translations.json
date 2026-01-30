@@ -39,6 +39,12 @@
           "title": "LearnSpace",
           "category": "Plataforma de Estudo IA",
           "image": "/Portfolio/images/projects/learnspacelogo.png"
+        },
+        {
+          "slug": "overseas",
+          "title": "Overseas",
+          "category": "Site Educacional",
+          "image": "/Portfolio/images/projects/overseaslogo.png"
         }
       ]
     },
@@ -95,6 +101,12 @@
           "title": "LearnSpace",
           "category": "AI Study Platform",
           "image": "/Portfolio/images/projects/learnspacelogo.png"
+        },
+        {
+          "slug": "overseas",
+          "title": "Overseas",
+          "category": "Educational Site",
+          "image": "/Portfolio/images/projects/overseaslogo.png"
         }
       ]
     },
