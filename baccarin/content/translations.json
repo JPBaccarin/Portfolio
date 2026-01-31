@@ -51,6 +51,12 @@
           "title": "CalcAll",
           "category": "Plataforma Educacional",
           "image": "/Portfolio/images/projects/calcalllogo.png"
+        },
+        {
+          "slug": "eteco",
+          "title": "Eteco",
+          "category": "Sustentabilidade",
+          "image": "/Portfolio/images/projects/etecologo.png"
         }
       ]
     },
@@ -119,6 +125,12 @@
           "title": "CalcAll",
           "category": "Educational Platform",
           "image": "/Portfolio/images/projects/calcalllogo.png"
+        },
+        {
+          "slug": "eteco",
+          "title": "Eteco",
+          "category": "Sustainability",
+          "image": "/Portfolio/images/projects/etecologo.png"
         }
       ]
     },
