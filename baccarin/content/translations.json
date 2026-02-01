@@ -57,6 +57,12 @@
           "title": "Eteco",
           "category": "Sustentabilidade",
           "image": "/Portfolio/images/projects/etecologo.png"
+        },
+        {
+          "slug": "gamedb",
+          "title": "GameDB",
+          "category": "Integração de APIs",
+          "image": "/Portfolio/images/projects/gamedblogo.png"
         }
       ]
     },
@@ -131,6 +137,12 @@
           "title": "Eteco",
           "category": "Sustainability",
           "image": "/Portfolio/images/projects/etecologo.png"
+        },
+        {
+          "slug": "gamedb",
+          "title": "GameDB",
+          "category": "API Integration",
+          "image": "/Portfolio/images/projects/gamedblogo.png"
         }
       ]
     },
