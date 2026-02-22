@@ -8,11 +8,11 @@ export const dynamic = "force-static";
  * Define as rotas principais e os projetos dinamicamente.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://jpbaccarin.github.io/Portfolio";
+  const baseUrl = "https://jpbaccarin.github.io/Portfolio/"; // Adicionada barra no final
   const projects = getAllProjectSlugs();
 
   const projectRoutes = projects.map((p) => ({
-    url: `${baseUrl}/projects/${p.slug}/`,
+    url: `${baseUrl}projects/${p.slug}/`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Rotas principais e projetos
   return [
     {
-      url: `${baseUrl}/`,
+      url: `${baseUrl}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
