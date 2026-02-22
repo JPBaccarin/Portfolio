@@ -7,6 +7,10 @@ import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { useLanguage } from "@/context/language-context";
 
+/**
+ * Página principal do Portfólio.
+ * Reúne todas as seções principais (Header, Hero, Sobre, Projetos, Contato, Footer).
+ */
 export default function Page() {
   const { t } = useLanguage();
 
@@ -16,6 +20,7 @@ export default function Page() {
 
       <Hero />
 
+      {/* Seção Sobre: carregada dinamicamente via contexto de tradução */}
       <section id="sobre" className="py-24 px-6 border-y border-border/10">
         <div className="container mx-auto">
           <div className="max-w-4xl">
