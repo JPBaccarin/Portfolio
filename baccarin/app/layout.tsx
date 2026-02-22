@@ -22,10 +22,58 @@ const jetbrainsMono = JetBrains_Mono({
  */
 export const metadata: Metadata = {
   title: "Baccarin | Desenvolvedor Full Stack",
-  description: "Portfólio profissional de desenvolvimento web e design criativo.",
+  description: "Portfólio profissional de desenvolvimento web, design criativo e soluções personalizadas de software.",
+  keywords: [
+    "Baccarin",
+    "Desenvolvedor Full Stack",
+    "Portfolio",
+    "Next.js",
+    "React",
+    "Web Design",
+    "Software Engineer",  
+  ],
+  metadataBase: new URL("https://jpbaccarin.github.io/Portfolio"),
   // Verificação obrigatória para o Google Search Console
   verification: {
     google: "q9M2dWoRfOlPfnTMX3T8XTJsVtrVIKT2rgGDN-nZ9mE",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    title: "Baccarin | Desenvolvedor Full Stack",
+    description:
+      "Portfólio profissional de desenvolvimento web, design criativo e soluções personalizadas de software.",
+    url: "https://jpbaccarin.github.io/Portfolio",
+    siteName: "Baccarin Portfolio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Baccarin | Desenvolvedor Full Stack",
+      },
+    ],
+    locale: "pt-BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Baccarin | Desenvolvedor Full Stack",
+    description:
+      "Portfólio profissional de desenvolvimento web, design criativo e soluções personalizadas de software.",
+    images: ["/og.png"],
+  },
+  alternates: {
+    canonical: "https://jpbaccarin.github.io/Portfolio",
   },
 };
 
