@@ -3,6 +3,7 @@ import { JetBrains_Mono, Archivo } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/context/language-context";
+import { seoKeywords } from "@/lib/keywords";
 
 /**
  * Configuração das fontes externas (Google Fonts)
@@ -18,20 +19,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 /**
+
  * Metadados globais da aplicação, incluindo SEO e verificação do Google
  */
 export const metadata: Metadata = {
   title: "Baccarin | Desenvolvedor Full Stack",
   description: "Portfólio profissional de desenvolvimento web, design criativo e soluções personalizadas de software.",
-  keywords: [
-    "Baccarin",
-    "Desenvolvedor Full Stack",
-    "Portfolio",
-    "Next.js",
-    "React",
-    "Web Design",
-    "Software Engineer",  
-  ],
+  keywords: seoKeywords,
   metadataBase: new URL("https://jpbaccarin.github.io/Portfolio"),
   // Verificação obrigatória para o Google Search Console
   verification: {
