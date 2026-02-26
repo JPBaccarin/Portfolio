@@ -20,7 +20,7 @@ async function importData() {
 
   try {
     // 1. Importar Mídia primeiro (necessário para referências em Projetos)
-    console.log("\n📦 Importando Media...");
+    console.log("\n📦 Importando media...");
     const mediaMapping: Record<string, string> = {}; // De ID antigo para novo se necessário
 
     for (const doc of backup.collections.media) {
@@ -34,9 +34,9 @@ async function importData() {
               alt: doc.alt,
             },
             filePath,
-            overwriteExisting: true,
+            overwriteExistingFiles: true,
           });
-          mediaMapping[doc.id] = newMedia.id;
+          mediaMapping[doc.id.toString()] = newMedia.id.toString();
         } catch (e) {
           console.warn(`Aviso: Falha ao subir ${doc.filename}.`);
         }
@@ -44,7 +44,7 @@ async function importData() {
     }
 
     // 2. Importar Projetos
-    console.log("\n🚀 Importando Projetos...");
+    console.log("\n🚀 Importando projects...");
     for (const doc of backup.collections.projects) {
       console.log(`Criando projeto: ${doc.slug}...`);
 

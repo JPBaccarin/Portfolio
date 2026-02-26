@@ -31,7 +31,7 @@ async function migrate() {
 
   try {
     // --- MIGRAÇÃO DE MÍDIA ---
-    console.log("\n📦 Migrando Coleção: Media...");
+    console.log("\n📦 Migrando Coleção: media...");
     const { rows: mediaRows } = await localClient.query("SELECT * FROM media");
 
     for (const row of mediaRows) {
@@ -46,7 +46,7 @@ async function migrate() {
               alt: row.alt || "migrated-image",
             },
             filePath,
-            overwriteExisting: true,
+            overwriteExistingFiles: true,
           });
         } catch (e) {
           console.warn(`Aviso: Falha ao migrar arquivo ${row.filename}. Pode já existir.`);
@@ -57,7 +57,7 @@ async function migrate() {
     }
 
     // --- MIGRAÇÃO DE PROJETOS ---
-    console.log("\n🚀 Migrando Coleção: Projects...");
+    console.log("\n🚀 Migrando Coleção: projects...");
     const { rows: projectsRows } = await localClient.query("SELECT * FROM projects");
 
     for (const row of projectsRows) {
