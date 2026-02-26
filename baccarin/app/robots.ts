@@ -1,9 +1,7 @@
 import { MetadataRoute } from "next";
 
-export const dynamic = "force-static";
-
 /**
- * Configuração do robots.txt para o mecanismo de busca.
+ * Configuração do robots.txt para os mecanismos de busca.
  * Permite que todos os bots indexem o conteúdo do site.
  */
 export default function robots(): MetadataRoute.Robots {
@@ -12,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://jpbaccarin.github.io/Portfolio/sitemap.xml",
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/sitemap.xml`,
   };
 }

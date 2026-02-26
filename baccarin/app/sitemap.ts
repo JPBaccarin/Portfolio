@@ -1,18 +1,16 @@
 import { getAllProjectSlugs } from "@/lib/projects";
 import { MetadataRoute } from "next";
 
-export const dynamic = "force-static";
-
 /**
- * Gera o sitemap.xml para o Google Search Console.
- * Define as rotas principais e os projetos dinamicamente.
+ * Gera o sitemap.xml dinamicamente.
+ * Define as rotas principais e os projetos.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://jpbaccarin.github.io/Portfolio/"; // Adicionada barra no final
-  const projects = getAllProjectSlugs();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const projects = await getAllProjectSlugs();
 
   const projectRoutes = projects.map((p) => ({
-    url: `${baseUrl}projects/${p.slug}/`,
+    url: `${baseUrl}/projects/${p.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,

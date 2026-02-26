@@ -17,7 +17,7 @@ export function ContactDialog({ trigger }: ContactDialogProps) {
       <DialogContent className="sm:max-w-md bg-background/95 backdrop-blur-xl border-border/10">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold uppercase tracking-widest font-jetbrains text-primary">
-            {t.footer.contactDialog.title}
+            {(t.footer as any)?.contactDialog?.title}
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-4 py-8">
@@ -29,7 +29,9 @@ export function ContactDialog({ trigger }: ContactDialogProps) {
           >
             <div className="flex items-center gap-4">
               <RiWhatsappLine className="w-6 h-6 text-primary" />
-              <span className="text-xs font-bold uppercase tracking-widest">{t.footer.contactDialog.whatsapp}</span>
+              <span className="text-xs font-bold uppercase tracking-widest">
+                {(t.footer as any)?.contactDialog?.whatsapp}
+              </span>
             </div>
           </a>
 
@@ -39,7 +41,9 @@ export function ContactDialog({ trigger }: ContactDialogProps) {
           >
             <div className="flex items-center gap-4">
               <RiMailLine className="w-6 h-6 text-primary" />
-              <span className="text-xs font-bold uppercase tracking-widest">{t.footer.contactDialog.email}</span>
+              <span className="text-xs font-bold uppercase tracking-widest">
+                {(t.footer as any)?.contactDialog?.email}
+              </span>
             </div>
           </a>
 
@@ -51,7 +55,9 @@ export function ContactDialog({ trigger }: ContactDialogProps) {
           >
             <div className="flex items-center gap-4">
               <RiLinkedinLine className="w-6 h-6 text-primary" />
-              <span className="text-xs font-bold uppercase tracking-widest">{t.footer.contactDialog.linkedin}</span>
+              <span className="text-xs font-bold uppercase tracking-widest">
+                {(t.footer as any)?.contactDialog?.linkedin}
+              </span>
             </div>
           </a>
         </div>

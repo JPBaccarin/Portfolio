@@ -1,78 +1,100 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { remark } from "remark";
-import remarkGfm from "remark-gfm";
-import html from "remark-html";
+import { getPayloadClient } from "./payload";
 
-const projectsDirectory = path.join(process.cwd(), "content/projects");
+export interface Project {
+  id: string | number;
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  description: string;
+  image?: { url: string } | string;
+  tech?: { name: string }[];
+  content: { root: { children: any[] } };
+}
 
-export async function getProjectData(slug: string, lang: string) {
-  const fullPath = path.join(projectsDirectory, lang, `${slug}.md`);
+export interface ProjectData {
+  id: string | number;
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  description: string;
+  contentHtml: string;
+  image: string;
+  tech: string[];
+  content: { root: { children: any[] } };
+}
 
-  if (!fs.existsSync(fullPath)) {
+/**
+ * Busca os dados de um projeto específico pelo slug e idioma.
+ */
+export async function getProjectData(slug: string, lang: string): Promise<ProjectData | null> {
+  const payload = await getPayloadClient();
+
+  const { docs } = await payload.find({
+    collection: "projects",
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    locale: lang as "pt" | "en",
+    depth: 1,
+  });
+
+  if (!docs.length) {
     return null;
   }
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const matterResult = matter(fileContents);
-
-  const processedContent = await remark().use(remarkGfm).use(html).process(matterResult.content);
-
-  const contentHtml = processedContent.toString();
+  const project = docs[0] as unknown as Project;
 
   return {
-    slug,
-    contentHtml,
-    ...(matterResult.data as {
-      title: string;
-      category: string;
-      date: string;
-      image: string;
-      description: string;
-      tech: string[];
-    }),
+    ...project,
+    contentHtml: "",
+    image: (project.image as { url?: string })?.url || "",
+    tech: project.tech?.map((t) => t.name) || [],
+    content: project.content,
   };
 }
 
-export function getAllProjectSlugs() {
-  // We'll assume slugs are the same across languages
-  const ptPath = path.join(projectsDirectory, "pt");
+/**
+ * Retorna todos os slugs de projetos para geração de páginas ou sitemaps.
+ */
+export async function getAllProjectSlugs() {
+  const payload = await getPayloadClient();
 
-  if (!fs.existsSync(ptPath)) return [];
-
-  const fileNames = fs.readdirSync(ptPath);
-
-  return fileNames.map((fileName) => {
-    return {
-      slug: fileName.replace(/\.md$/, ""),
-    };
+  const { docs } = await payload.find({
+    collection: "projects",
+    select: {
+      slug: true,
+    },
+    pagination: false,
   });
+
+  return docs.map((doc) => ({
+    slug: doc.slug,
+  }));
 }
 
-export function getProjectList(lang: string) {
-  const langPath = path.join(projectsDirectory, lang);
+/**
+ * Retorna a lista resumida de projetos para o idioma selecionado.
+ */
+export async function getProjectList(lang: string) {
+  const payload = await getPayloadClient();
 
-  if (!fs.existsSync(langPath)) return [];
-
-  const fileNames = fs.readdirSync(langPath);
-
-  return fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(langPath, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
-
-    return {
-      slug,
-      ...(matterResult.data as {
-        title: string;
-        category: string;
-        date: string;
-        image: string;
-        description: string;
-        tech: string[];
-      }),
-    };
+  const { docs } = await payload.find({
+    collection: "projects",
+    locale: lang as "pt" | "en",
+    depth: 1,
+    sort: "-date",
   });
+
+  return (docs as unknown as Project[]).map((project) => ({
+    slug: project.slug,
+    title: project.title,
+    category: project.category,
+    image: (project.image as { url?: string })?.url || "",
+    date: project.date,
+    description: project.description,
+  }));
 }

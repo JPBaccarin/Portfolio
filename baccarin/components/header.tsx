@@ -29,8 +29,10 @@ export function Header() {
             {t.nav.about}
           </Link>
           <a
-            href={t.hero.resumeFile}
+            href={typeof t.hero.resumeFile === "object" ? t.hero.resumeFile?.url || "#" : t.hero.resumeFile || "#"}
             download
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-primary transition-colors group"
           >
             <RiDownloadLine className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />

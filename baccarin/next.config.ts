@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
+/**
+ * Configuração do Next.js para modo dinâmico com Payload CMS.
+ * Removidas as configurações de exportação estática (basePath, trailingSlash, unoptimized).
+ */
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: "/Portfolio", // Substitua pelo nome do seu repositório se for diferente
-  trailingSlash: true,
+  // Imagens otimizadas pelo Next.js (modo dinâmico)
   images: {
-    unoptimized: true,
+    remotePatterns: [],
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);

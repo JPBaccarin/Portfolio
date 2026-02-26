@@ -1,14 +1,10 @@
-import { getProjectData, getAllProjectSlugs } from "@/lib/projects";
+import { getProjectData } from "@/lib/projects";
 import { ProjectContent } from "@/components/project-content";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
-}
-
-export async function generateStaticParams() {
-  return getAllProjectSlugs();
 }
 
 /**
@@ -24,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const baseUrl = "https://jpbaccarin.github.io/Portfolio";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
   return {
     title: `${project.title} | Baccarin - Projetos`,
@@ -32,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: project.title,
       description: project.description,
-      url: `${baseUrl}/projects/${slug}/`,
+      url: `${baseUrl}/projects/${slug}`,
       siteName: "Baccarin",
       images: [
         {

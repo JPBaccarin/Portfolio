@@ -7,10 +7,13 @@ import { RiArrowLeftLine, RiTimeLine, RiStackLine, RiArrowRightLine, RiMessage2L
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ContactDialog } from "./contact-dialog";
+import { RichText, LexicalNode } from "./rich-text";
+
+import { ProjectData, Project } from "@/lib/projects";
 
 interface ProjectContentProps {
-  pt: any;
-  en: any;
+  pt: ProjectData | null;
+  en: ProjectData | null;
 }
 
 export function ProjectContent({ pt, en }: ProjectContentProps) {
@@ -19,8 +22,12 @@ export function ProjectContent({ pt, en }: ProjectContentProps) {
 
   if (!data) return <div className="min-h-screen flex items-center justify-center">Project not found</div>;
 
-  // Filter other projects to show at the bottom
-  const otherProjects = t.projects.items.filter((p: any) => p.slug !== data.slug);
+  // No Payload, data.image pode ser um objeto ou ID
+  const imageUrl = typeof data.image === "object" ? (data.image as { url: string })?.url : (data.image as string);
+
+  // Filter other projects
+  const projectsList = (t.projects as { items?: Project[] })?.items || [];
+  const otherProjects = projectsList.filter((p) => p.slug !== data.slug);
 
   return (
     <main className="min-h-screen">
@@ -47,14 +54,14 @@ export function ProjectContent({ pt, en }: ProjectContentProps) {
 
               <div className="relative aspect-video rounded-lg overflow-hidden border border-border/10 mb-16 group">
                 <Image
-                  src={data.image}
+                  src={imageUrl || "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200"}
                   alt={data.title}
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </div>
 
-              <div className="markdown-content" dangerouslySetInnerHTML={{ __html: data.contentHtml }} />
+              <RichText content={data.content} />
             </div>
 
             <aside className="space-y-12 lg:pt-32">
@@ -105,22 +112,25 @@ export function ProjectContent({ pt, en }: ProjectContentProps) {
       <section className="py-24 px-6 bg-secondary/10">
         <div className="container mx-auto max-w-7xl">
           <div className="flex justify-between items-end mb-16">
-            <div>
-              <span className="text-[10px] font-bold text-primary uppercase tracking-[0.4em] mb-4 block font-jetbrains">
-                {language === "pt" ? "Mais_Projetos" : "More_Projects"}
+            <div className="mb-16">
+              <span className="text-[10px] font-bold text-primary uppercase tracking-[0.4em] mb-3 block font-jetbrains">
+                {(t.projectsLabel as Record<string, string>)?.label || (t.projects as Record<string, string>)?.label}
               </span>
               <h2 className="text-3xl font-bold tracking-tight uppercase font-jetbrains">
-                {language === "pt" ? "Continue_Explorando" : "Keep_Exploring"}
+                {(t.projectsLabel as Record<string, string>)?.title || (t.projects as Record<string, string>)?.title}
               </h2>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {otherProjects.map((p: any) => (
+            {otherProjects.map((p) => (
               <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
                 <div className="relative aspect-video rounded-md overflow-hidden border border-border/5 mb-6">
                   <Image
-                    src={p.image || "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200"}
+                    src={
+                      (typeof p.image === "object" ? p.image?.url : (p.image as string)) ||
+                      "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200"
+                    }
                     alt={p.title}
                     fill
                     className="object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105 opacity-60 group-hover:opacity-100"

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Archivo } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/context/language-context";
 import { seoKeywords } from "@/lib/keywords";
+import { getSiteSettings } from "@/lib/payload";
 
 /**
  * Configuração das fontes externas (Google Fonts)
@@ -19,14 +20,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 /**
-
  * Metadados globais da aplicação, incluindo SEO e verificação do Google
  */
 export const metadata: Metadata = {
   title: "Baccarin | Desenvolvedor Full Stack",
   description: "Portfólio profissional de desenvolvimento web, design criativo e soluções personalizadas de software.",
   keywords: seoKeywords,
-  metadataBase: new URL("https://jpbaccarin.github.io/Portfolio"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   // Verificação obrigatória para o Google Search Console
   verification: {
     google: "q9M2dWoRfOlPfnTMX3T8XTJsVtrVIKT2rgGDN-nZ9mE",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Baccarin | Desenvolvedor Full Stack",
     description:
       "Portfólio profissional de desenvolvimento web, design criativo e soluções personalizadas de software.",
-    url: "https://jpbaccarin.github.io/Portfolio",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
     siteName: "Baccarin Portfolio",
     images: [
       {
@@ -67,23 +67,33 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   alternates: {
-    canonical: "https://jpbaccarin.github.io/Portfolio",
+    canonical: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   },
 };
 
 /**
- * Componente de Layout Raiz que envolve toda a aplicação
+ * Layout raiz para as páginas do portfólio (frontend).
+ * Separado do Payload CMS para evitar conflito de <html> duplicado.
  */
-export default function RootLayout({
+export default async function FrontendLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Busca as traduções dinâmicas do Payload CMS
+  const settingsPt = await getSiteSettings("pt");
+  const settingsEn = await getSiteSettings("en");
+
+  const initialT = {
+    pt: settingsPt,
+    en: settingsEn,
+  };
+
   return (
     <html lang="pt-BR" suppressHydrationWarning className={`${archivo.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased font-archivo bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <LanguageProvider>
+          <LanguageProvider initialT={initialT}>
             {/* Fundo granulado animado (Efeito Premium) */}
             <div className="global-bg">
               <div className="accent-gradient" style={{ top: "10%", left: "10%" }} />

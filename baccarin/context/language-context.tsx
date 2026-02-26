@@ -1,38 +1,56 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import translations from "@/content/translations.json";
+import React, { createContext, useContext, useState } from "react";
 
 type Language = "pt" | "en";
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: any;
+  t: Record<any, any>;
+  setTranslations: (translations: Record<any, any>) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("pt");
-
-  // Load language preference from localStorage on mount
-  useEffect(() => {
-    const savedLang = localStorage.getItem("portfolio-lang") as Language;
-    if (savedLang && (savedLang === "pt" || savedLang === "en")) {
-      setLanguage(savedLang);
+export function LanguageProvider({
+  children,
+  initialT,
+}: {
+  children: React.ReactNode;
+  initialT?: Record<string, unknown>;
+}) {
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("portfolio-lang") as Language;
+      if (savedLang && (savedLang === "pt" || savedLang === "en")) {
+        return savedLang;
+      }
     }
-  }, []);
+    return "pt";
+  });
+
+  const [overriddenTranslations, setOverriddenTranslations] = useState<Record<string, unknown> | null>(null);
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem("portfolio-lang", lang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("portfolio-lang", lang);
+    }
   };
 
-  const t = translations[language];
+  const currentTranslations = overriddenTranslations || initialT || {};
+  const t = (currentTranslations[language] as Record<string, unknown>) || {};
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider
+      value={{
+        language,
+        setLanguage: handleSetLanguage,
+        t,
+        setTranslations: setOverriddenTranslations,
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );
