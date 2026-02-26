@@ -22,7 +22,7 @@ export function Projects() {
     // Busca a lista de projetos do Payload via API (client-side com idioma dinâmico)
     const fetchProjects = async () => {
       try {
-        const res = await fetch(`/api/projects?lang=${language}`);
+        const res = await fetch(`/api/projects?locale=${language}`);
         const data = await res.json();
         setProjects(data.docs || []);
       } catch (err) {

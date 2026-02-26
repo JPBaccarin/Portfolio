@@ -10,10 +10,10 @@ export function Contact() {
       <div className="container mx-auto">
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
           <span className="text-[10px] font-bold text-primary uppercase tracking-[0.4em] mb-6 font-jetbrains">
-            {t.footer.label}
+            {t.footer?.label}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight uppercase leading-tight mb-10 font-jetbrains">
-            {t.footer.title.split(" ").map((word: string, i: number, arr: string[]) => (
+            {(t.footer?.title || "").split(" ").map((word: string, i: number, arr: string[]) => (
               <span key={i}>{i === arr.length - 1 ? <span className="text-primary">{word}</span> : word} </span>
             ))}
           </h2>

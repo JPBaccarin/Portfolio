@@ -58,7 +58,7 @@ export function Hero() {
 
           {/* Simple Description */}
           <p className="hero-content text-lg md:text-xl font-medium text-muted-foreground leading-relaxed max-w-xl uppercase tracking-tight">
-            {t.hero.description}
+            {t.hero?.description}
           </p>
 
           {/* Action Button */}
@@ -68,7 +68,7 @@ export function Hero() {
               className="group flex items-center gap-6 text-[11px] font-bold uppercase tracking-[0.4em] transition-all hover:text-primary"
             >
               <span className="relative inline-block pb-1">
-                {t.hero.cta}
+                {t.hero?.cta}
                 <span className="absolute bottom-0 left-0 w-full h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-right group-hover:origin-left" />
               </span>
               <RiArrowDownLine className="w-5 h-5 transition-transform group-hover:translate-y-1" />

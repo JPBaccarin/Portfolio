@@ -18,7 +18,7 @@ export const getSiteSettings = async (lang: string = "pt") => {
   const payload = await getPayloadClient();
   return await payload.findGlobal({
     slug: "site-settings",
-    locale: lang as "pt" | "en",
+    locale: lang as any,
     depth: 1,
   });
 };

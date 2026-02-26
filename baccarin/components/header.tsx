@@ -23,20 +23,20 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-10 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
           <Link href={getLinkHref("#projetos")} className="hover:text-primary transition-colors">
-            {t.nav.projects}
+            {t.nav?.projects}
           </Link>
           <Link href={getLinkHref("#sobre")} className="hover:text-primary transition-colors">
-            {t.nav.about}
+            {t.nav?.about}
           </Link>
           <a
-            href={typeof t.hero.resumeFile === "object" ? t.hero.resumeFile?.url || "#" : t.hero.resumeFile || "#"}
+            href={typeof t.hero?.resumeFile === "object" ? t.hero?.resumeFile?.url || "#" : t.hero?.resumeFile || "#"}
             download
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-primary transition-colors group"
           >
             <RiDownloadLine className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
-            {t.hero.resumeDownload}
+            {t.hero?.resumeDownload}
           </a>
         </nav>
 
@@ -46,7 +46,7 @@ export function Header() {
             className="flex items-center gap-2 rounded-md bg-foreground px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-background transition-all hover:bg-primary hover:text-primary-foreground group"
           >
             <RiMessage2Line className="w-4 h-4" />
-            {t.nav.contact}
+            {t.nav?.contact}
           </Link>
         </div>
       </div>

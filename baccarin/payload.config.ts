@@ -5,33 +5,50 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import { Users } from "./collections/Users";
-import { Media } from "./collections/Media";
-import { Projects } from "./collections/Projects";
-import { SiteSettings } from "./globals/SiteSettings";
+import { users } from "./collections/users";
+import { media } from "./collections/media";
+import { projects } from "./collections/projects";
+import { siteSettings } from "./globals/site-settings";
+
+import { s3Storage } from "@payloadcms/storage-s3";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: users.slug,
   },
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [...defaultFeatures, EXPERIMENTAL_TableFeature()],
   }),
-  collections: [Users, Media, Projects],
-  globals: [SiteSettings],
+  collections: [users, media, projects],
+  globals: [siteSettings],
   secret: process.env.PAYLOAD_SECRET || "",
   db: postgresAdapter({
     pool: {
-      host: process.env.DATABASE_HOST,
-      port: Number(process.env.DATABASE_PORT),
-      database: process.env.DATABASE_NAME,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
+      connectionString: process.env.DATABASE_URI || "",
     },
   }),
+  plugins: [
+    s3Storage({
+      collections: {
+        media: {
+          prefix: "media",
+        },
+      },
+      bucket: process.env.S3_BUCKET || "",
+      config: {
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
+        },
+        region: process.env.S3_REGION || "",
+        endpoint: process.env.S3_ENDPOINT || "",
+      },
+    }),
+  ],
   localization: {
     locales: [
       {
