@@ -30,7 +30,7 @@ export function Header() {
           </Link>
           <a
             href={t.hero.resumeFile}
-            download
+            download="curriculo.pdf"
             className="flex items-center gap-2 hover:text-primary transition-colors group"
           >
             <RiDownloadLine className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
